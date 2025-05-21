@@ -10,9 +10,9 @@ def main():
     client = QfnuAuthClient()
 
     # 设置账号密码和认证目标URL
-    username = "your_account"
-    password = "your_password"
-    target_url = "http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2Fzhjw.qfnu.edu.cn%2Fsso.jsp"
+    username = "2022416246"
+    password = "qfnuWS0814@"
+    target_url = "http://ids.qfnu.edu.cn/authserver/login?service=http://zhjw.qfnu.edu.cn/jsxsd/framework/xsMain.jsp"
 
     print("正在尝试获取认证Token...")
 
@@ -29,8 +29,10 @@ def main():
         cookies = client.get_auth_cookie()
         print(f"认证Cookie：{cookies}")
 
-        # 这里可以继续使用session进行后续请求
-        # 例如：response = client.session.get(redirect_url)
+        # 访问重定向URL
+        response = client.session.get(redirect_url)
+        print(response.text)
+
     else:
         print("认证失败，请检查账号密码是否正确或网络连接")
 

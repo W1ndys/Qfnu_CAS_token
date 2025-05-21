@@ -164,7 +164,7 @@ if __name__ == "__main__":
     redirect_url = client.get_token(
         "your_account",
         "your_password",
-        "http://ids.qfnu.edu.cn/authserver/login?service=http%3A%2F%2Fzhjw.qfnu.edu.cn%2Fsso.jsp",
+        "http://ids.qfnu.edu.cn/authserver/login?service=http://zhjw.qfnu.edu.cn/jsxsd/framework/xsMain.jsp",
     )
 
     if redirect_url:
