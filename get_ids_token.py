@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 import requests
 import time
 from utils.passwd_encrypt import PasswordEncryptor
@@ -34,13 +34,13 @@ class QfnuAuthClient:
             response_data = self.session.get(url=redir_uri, headers=headers).text
             soup = BeautifulSoup(response_data, "html.parser")
 
-            # 修复BeautifulSoup的使用方法，添加错误处理
+            # 修复BeautifulSoup的使用方法，添加正确的类型检查
             execution_element = soup.find(id="execution")
             salt_element = soup.find(id="pwdEncryptSalt")
 
-            if execution_element and hasattr(execution_element, "get"):
+            if execution_element and isinstance(execution_element, Tag):
                 execution_data = execution_element.get("value")
-                if salt_element and hasattr(salt_element, "get"):
+                if salt_element and isinstance(salt_element, Tag):
                     salt_data = salt_element.get("value")
                     return salt_data, execution_data
 
